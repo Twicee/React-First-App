@@ -1,0 +1,17 @@
+{
+  "name": "csc-307-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "react-scripts test"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}
