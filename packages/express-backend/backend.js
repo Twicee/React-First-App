@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
@@ -32,6 +33,9 @@ const users = {
   ]
 };
 
+app.use(cors());
+app.use(express.json());
+
 const findUserByNameAndJob = (name, job) => {
   return users["users_list"].filter(
     (user) => user["name"] === name && user["job"] === job
@@ -58,8 +62,6 @@ const addUser = (user) => {
   users["users_list"].push(user);
   return user;
 };
-
-app.use(express.json());
 
 app.listen(port, () => {
   console.log(
