@@ -58,9 +58,14 @@ const findUserById = (id) =>{
   users["users_list"].find((user) => user["id"] === id);
 }
 
+const generateRandomId = () => {
+  return Math.random().toString(36).substr(2, 10);
+}
+
 const addUser = (user) => {
-  users["users_list"].push(user);
-  return user;
+  const newUser = { ...user, id: generateRandomId() };
+  users["users_list"].push(newUser);
+  return newUser;
 };
 
 app.listen(port, () => {
@@ -97,8 +102,8 @@ app.get("/users/:id", (req, res) => {
 
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
-  addUser(userToAdd);
-  res.send();
+  const newUser = addUser(userToAdd);
+  res.status(201).json(newUser);
 });
 
 app.delete("/users/:id", (req, res) => {
@@ -106,7 +111,7 @@ app.delete("/users/:id", (req, res) => {
   const success = deleteUserById(id);
 
   if(success){
-    res.send("User deleted");
+    res.status(204).send();
   }else{
     res.status(404).send("User not found.");
   }
