@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import userModel from "../user";
+import userModel from "./user";
 
 mongoose.set("debug", true);
 
